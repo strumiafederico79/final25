@@ -75,6 +75,24 @@
     return theme === THEMES.AUTO ? (prefersDark.matches ? THEMES.DARK : THEMES.LIGHT) : theme;
   }
 
+  function isStudioTheme(theme) {
+    return STUDIO_THEMES.indexOf(theme) !== -1;
+  }
+
+  function setStudioAttrs(enable, variant) {
+    const root = document.documentElement;
+    const studioLink = document.getElementById('studio-css');
+    if (enable) {
+      root.setAttribute('data-studio-theme', 'true');
+      if (variant) root.setAttribute('data-studio-variant', variant);
+      if (studioLink) studioLink.disabled = false;
+    } else {
+      root.removeAttribute('data-studio-theme');
+      root.removeAttribute('data-studio-variant');
+      if (studioLink) studioLink.disabled = true;
+    }
+  }
+
   function applyTheme(theme, { persist = true, announce = true } = {}) {
     if (!Object.values(THEMES).includes(theme)) {
       throw new Error(`LGMDM Theme Contract: unknown theme "${theme}"`);
@@ -84,9 +102,16 @@
     if (persist) storageSet(STORAGE_KEY, theme);
 
     const root = document.documentElement;
-    root.setAttribute("data-theme", theme);
+    root.setAttribute('data-theme', theme);
     root.classList.remove(...Object.values(THEMES).filter(Boolean).map((name) => `theme-${name}`));
     root.classList.add(`theme-${theme}`);
+
+    // Studio integration: set custom attributes + enable/disable studio stylesheet
+    if (isStudioTheme(theme)) {
+      setStudioAttrs(true, theme);
+    } else {
+      setStudioAttrs(false);
+    }
 
     const resolved = resolvedTheme(theme);
     root.dataset.themeResolved = resolved;
