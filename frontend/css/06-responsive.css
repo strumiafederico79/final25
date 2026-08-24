@@ -1,0 +1,66 @@
+/* LGMDM V4 — responsive/accessibility */
+@layer responsive {
+  @media (max-width: 1180px) {
+    :root { --lg-sidebar-w: clamp(250px, 27vw, 320px); }
+    .lg-studio-shell { grid-template-columns:minmax(150px,190px) minmax(0,1fr) minmax(220px,260px); }
+    .lg-console-controlbar { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .ab-cluster { grid-column:span 3; }
+  }
+
+  @media (max-width: 900px) {
+    .lg-app { height:auto; min-height:100dvh; overflow:visible; }
+    .lg-header { position:sticky; top:0; z-index:50; grid-template-columns:minmax(0,1fr) auto; }
+    .lg-header-center { display:none; }
+    .lg-app-body { grid-template-columns:minmax(0,1fr); min-height:calc(100dvh - var(--lg-shell-header-h)); overflow:visible; }
+    .lg-sidebar { max-height:none; border-right:0; border-bottom:1px solid var(--v4-accent); }
+    .lg-workspace-surface { min-height:0; }
+    .console-workspace { overflow:visible; }
+    .lg-studio-shell { grid-template-columns:1fr; }
+    .lg-studio-left, .lg-studio-right { height:auto; max-height:330px; }
+    .lg-console-main { grid-template-columns:1fr; }
+    .lg-meter-rack { min-height:150px; }
+    .lg-spectrum-row { grid-template-columns:1fr; }
+  }
+
+  @media (max-width: 640px) {
+    :root { --v4-gap:6px; }
+    .lg-header { padding:0 7px; }
+    .lg-brand { font-size:11px; }
+    .lg-subbrand { display:none; }
+    .lg-workspace-workspace-tabs { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .lg-workspace-workspace-tab { font-size:7px; }
+    .lg-console { gap:6px; }
+    .lg-console-topbar { align-items:flex-start; }
+    .lg-console-actions { width:100%; }
+    .lg-console-actions > * { flex:1 1 0; }
+    .lg-console-controlbar { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .ab-cluster { grid-column:auto; }
+    .lg-chain-control-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .studio-gr-grid { grid-template-columns:1fr; }
+    .eq4-wrap { grid-template-columns:1fr; }
+    .meters-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sidebar-tabs { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .button-row { grid-template-columns:1fr; }
+  }
+
+  @media (max-height: 620px) and (min-width: 901px) {
+    :root { --lg-shell-header-h: 46px; }
+    .lg-sidebar { padding:6px; }
+    .console-workspace { padding:6px; }
+    .lg-wave-stage { height:clamp(92px,17vh,135px); min-height:84px; }
+    .lg-studio-left, .lg-studio-right { height:auto; max-height:280px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior:auto !important; transition-duration:0.01ms !important; animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
+  }
+}
+@layer accessibility {
+  .sidebar-tab:focus-visible, .studio-plugin-header:focus-visible, .studio-band-tab:focus-visible, .lg-workspace-workspace-tab:focus-visible, .lg-icon-btn:focus-visible {
+    outline:2px solid var(--v4-accent); outline-offset:2px;
+  }
+  @media (pointer:coarse) {
+    button, summary, input[type="range"] { min-height:28px; }
+    .studio-band-tab { min-height:30px; }
+  }
+}

@@ -1,0 +1,6 @@
+/* LGMDM V4 — main general grid ONLY */
+@layer main-grid {
+  .lg-app { display:grid; grid-template-rows:var(--lg-shell-header-h) minmax(0,1fr); }
+  .lg-header { display:grid; grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr); }
+  .lg-app-body { display:grid; grid-template-columns:minmax(0,var(--lg-sidebar-w)) minmax(0,1fr); }
+}

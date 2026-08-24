@@ -1,0 +1,52 @@
+/* LGMDM Studio — modular dark workstation surface */
+.lg-studio-shell{display:grid;grid-template-columns:minmax(180px,220px) minmax(0,1fr) minmax(250px,310px);gap:12px;margin:12px 0 0;min-height:0}
+.lg-studio-left{padding:12px;overflow:auto;max-height:760px}
+.lg-studio-center{padding:12px;display:grid;grid-template-rows:auto auto auto;gap:12px}
+.lg-studio-right{padding:10px;overflow:auto;max-height:760px}
+.studio-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.studio-heading strong{font:700 12px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.studio-heading small{font:500 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted,#89909d);text-transform:uppercase}
+.studio-family{margin-bottom:10px;padding-top:10px;border-top:1px solid var(--line)}
+.studio-family:first-child{border-top:0;padding-top:0}
+.studio-family-title{display:flex;justify-content:space-between;margin-bottom:6px;color:#8e98a8;font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.studio-family-title small{font-weight:500;color:#596270}
+.studio-plugin-toggle{display:flex;align-items:center;gap:8px;padding:7px 8px;margin:0 -8px;border-radius:var(--r1,9px);cursor:pointer;transition:.15s ease}
+.studio-plugin-toggle:hover{background:var(--s3,#171d30)}
+.studio-plugin-toggle input[type="checkbox"]{margin:0;flex:0 0 auto;accent-color:var(--p,#68e0ff)}
+.studio-plugin-toggle em{margin-left:auto;font:600 8px ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;color:#6f7784}
+.studio-plugin-name{flex:1 1 auto;min-width:0;font:600 11px/1.2 Inter,ui-sans-serif,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.studio-plugin-led{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#434954;box-shadow:0 0 0 transparent;transition:.15s ease}
+.studio-plugin-toggle.active .studio-plugin-led{background:#69e4ae;box-shadow:0 0 10px rgba(105,228,174,.55)}
+.studio-center-kicker{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:#8f99a6}
+.studio-chain-flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.studio-chain-node{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--s2)}
+.studio-chain-index{font:800 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#67717e}
+.studio-chain-arrow{color:#4f5967;font-size:14px}
+.studio-gr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.studio-gr-note{margin-top:8px;color:#606a78;font-size:9px}
+.studio-telemetry-empty{padding:14px;border:1px dashed rgba(255,255,255,.1);border-radius:10px;color:#77818f;font-size:10px;text-align:center}
+.studio-rack-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.studio-rack-head strong{font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.studio-rack-head small{font:500 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#687280}
+.studio-plugin-card{border:1px solid var(--line);border-radius:var(--r2,13px);background:var(--s2);margin-bottom:8px;overflow:hidden}
+.studio-plugin-header{display:flex;align-items:center;gap:8px;width:100%;padding:10px 12px;border:0;background:transparent;color:var(--text);cursor:pointer;text-align:left}
+.studio-plugin-header-title{flex:1 1 auto;min-width:0;font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em}
+.studio-plugin-body{display:flex;flex-direction:column;gap:8px;padding:0 12px 12px;border-top:1px solid var(--line)}
+.studio-plugin-status{width:7px;height:7px;border-radius:50%;background:#6be4ad;box-shadow:0 0 8px rgba(107,228,173,.45)}
+.studio-plugin-header-meta{font:600 8px ui-monospace,SFMono-Regular,Menlo,monospace;color:#6f7885}
+.studio-chevron{color:#67717e}
+.studio-control-row{display:grid;grid-template-columns:84px minmax(0,1fr) 55px;gap:8px;align-items:center;padding:6px 0}
+.studio-control-label{font:600 9px ui-monospace,SFMono-Regular,Menlo,monospace;color:#949eaa}
+.studio-range{width:100%;accent-color:#7be6b2}
+.studio-band-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:9px}
+.studio-band-tab{padding:6px 4px;border:1px solid var(--line);border-radius:var(--r1,9px);background:var(--s3);font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-align:center}
+.studio-band-state-hint{padding:8px;border-radius:7px;background:rgba(255,255,255,.025);color:#747f8e;font:500 9px ui-monospace,SFMono-Regular,Menlo,monospace}
+.studio-plugin-actions{display:flex;gap:6px;margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.05)}
+.studio-action-btn{flex:1;padding:7px 10px;border:1px solid var(--line);border-radius:var(--r1,9px);background:var(--s3);color:var(--text);font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;cursor:pointer}
+.studio-action-btn.danger{color:var(--danger,#ff6e87)}
+.studio-add-plugin{display:block;width:100%;padding:10px;margin-top:4px;border:1px dashed var(--line);border-radius:var(--r1,9px);background:transparent;color:var(--muted,#89909d);font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-align:center}
+.lg-studio-active .lg-pro-expert-banner,.lg-studio-active .lg-pro-expert-panel{display:none!important}
+.lg-studio-active .lg-console-controlbar,.lg-studio-active .lg-chain-control-strip{display:none!important}
+@media (max-width:1200px){.lg-studio-shell{grid-template-columns:190px minmax(0,1fr) 280px}.studio-gr-grid{grid-template-columns:1fr}.studio-telemetry-empty{display:none}}
+@media (max-width:960px){.lg-studio-shell{grid-template-columns:1fr;}.lg-studio-left,.lg-studio-right{max-height:none}.lg-studio-center{order:-1}.lg-studio-right{order:2}.studio-family{display:inline-block;vertical-align:top;width:49%}}
+@media (max-width:640px){.studio-family{width:100%}.lg-studio-shell{gap:8px}.lg-studio-column{border-radius:10px}.studio-control-row{grid-template-columns:75px minmax(0,1fr) 52px}}

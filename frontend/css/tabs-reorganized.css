@@ -1,0 +1,88 @@
+/* ============================================================
+   tabs-reorganized.css — overrides responsivos de tabs y layout shell
+   ============================================================ */
+
+/* ── Responsive tabs ── */
+@media (max-width: 768px) {
+  .sidebar-tabs {
+    padding: 8px;
+    gap: 2px;
+  }
+
+  .sidebar-tab {
+    min-width: auto;
+    padding: 6px 8px;
+    font-size: 11px;
+    flex: 1 1 45%;
+  }
+
+  .sidebar-pane {
+    max-height: calc(100vh - 250px);
+  }
+
+  .preset-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ab-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .viz-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-tabs {
+    flex-wrap: wrap;
+  }
+
+  .panel-block {
+    padding: 10px;
+    gap: 6px;
+  }
+}
+
+/* ── Layout base del shell (app-container / app-header / content-area / app-footer) ──
+   Estas clases no tenían reglas base fuera de @media en lgmdm.css/responsive.css.
+   Se agregan aquí como reglas de nivel alto para que el shell de página completa
+   funcione correctamente en escritorio sin romper el layout existente. */
+
+.app-container {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-header {
+  flex: 0 0 auto;
+  height: var(--lgmdm-header-safe, 58px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 12px;
+}
+
+/* main.content-area pisa el main{height:calc(...) !important} de lgmdm.css
+   cuando <main> no es hijo directo de <body> sino de .main-container */
+main.content-area {
+  flex: 1 1 auto !important;
+  height: 100% !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.app-footer {
+  flex: 0 0 auto;
+  padding: 2px 12px;
+  font-size: 11px;
+  text-align: center;
+  opacity: 0.55;
+  line-height: 1.6;
+}

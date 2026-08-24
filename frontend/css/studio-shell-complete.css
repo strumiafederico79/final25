@@ -1,0 +1,511 @@
+/* ============================================================
+   studio-shell-complete.css — Layout principal + Studio (parte 2)
+   ------------------------------------------------------------
+   Completa las 141 clases que usa index.html (layout principal +
+   sección Studio) y que no estaban definidas en NINGÚN css del
+   proyecto (lgmdm.css, studio.css, studio-console-complete.css,
+   themes-professional.css, layout-shell.css, tabs-reorganized.css,
+   responsive.css). Confirmado por diff automático clase-por-clase
+   contra las 6 hojas ya linkeadas.
+
+   Reusa el sistema de tokens de :root definido en lgmdm.css
+   (--p, --p2, --a, --s, --s2, --s3, --s4, --line, --muted, --dim,
+   --text, --r1, --r2, --mono) — sin colores hardcodeados nuevos,
+   para que los 10 temas de themes-professional.css sigan
+   funcionando igual sobre estas clases.
+
+   Orden de secciones:
+     1) Health strip (arriba del header)              .lg-health-*
+     2) Processing-chain strip + transport             .lg-chain-*, .lg-transport-*, .lg-console-transport
+     3) Tabs de workspace (Console/Analysis/…)          .lg-workspace-workspace*, .console-workspace
+     4) Panel de espectro / análisis                    .lg-spectrum-*, .analysis-link-panel, .lg-live
+     5) Compresor multibanda                            .mb-*
+     6) EQ de 4 bandas                                  .eq4-*, .eq-curve-wrap
+     7) Medidor de bandas de frecuencia                 .freqband*
+     8) Rack de medidores (meters)                      .meters-*, .meter-*, .stereo-meter-center
+     9) Dashboard de sistema                            .dashboard-wrap, .dash-*
+    10) Extras de control-card / process-card           .control-card-*, .control-row-wide, .process-card-*, .details-summary*
+    11) Params, toggles y labels (variantes)             .param--*, .param-label, .param-hint, .val-badge,
+                                                          .toggle-label--*, .ms-control-label--*, .range-*
+    12) Sidebar panes (Archivo/Cadena/Salida/resize)     .sidebar-pane-*, .sidebar-showing-archivo, .sidebarResizeHandle
+    13) Botones sueltos                                  .btn-block, .btn-ab, .btn-download, .btn-report
+    14) Utilitarias sueltas                              .mt-lg/.mt-xs/.mt-xxs, .accent, .accent2, .output,
+                                                          .divider-top-lg, .section-*, .stage-num*, .note-*,
+                                                          .text-muted-body, .hidden-input, .select-full,
+                                                          .canvas-block, .stack-col, .grid-*, .inline-row,
+                                                          .loading-placeholder, .uppy-picker, .file-name,
+                                                          .file-size-warn, .lg-inline-note, .ref-library-list,
+                                                          .ref-match-option, .aside-scroll-hint, .summary-divider
+   ============================================================ */
+/* ── 1) Health strip ─────────────────────────────────────────── */
+
+.lg-health-strip{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;
+  padding:8px var(--gutter,14px);margin-bottom:2px;
+}
+
+.health-card{
+  padding:8px 10px;border:1px solid var(--line);border-radius:var(--r1);
+  background:linear-gradient(180deg,var(--s2),var(--s));display:flex;flex-direction:column;gap:2px;min-width:0;
+}
+
+.health-label{font:800 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.health-card strong{font-size:13px;font-weight:900;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.health-card small{font-size:9px;color:var(--dim)}
+
+
+.lg-health-panel{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:12px}
+
+.lg-health-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+
+.lg-health-head strong{font-size:12px;font-weight:900}
+
+.lg-health-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+
+.lg-health-item{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:var(--r1);background:var(--s3)}
+
+.lg-health-item b{display:block;font-size:10px;font-weight:800}
+
+.lg-health-item small{color:var(--dim);font-size:9px}
+
+.lg-health-dot{width:7px;height:7px;flex:0 0 auto;border-radius:50%;background:var(--dim);box-shadow:0 0 0 transparent;transition:.2s ease}
+
+.lg-health-item[data-health-ok="true"] .lg-health-dot,
+.lg-health-item.ok .lg-health-dot{background:var(--ok);box-shadow:0 0 8px color-mix(in srgb,var(--ok) 60%,transparent)}
+
+.lg-health-item[data-health-error="true"] .lg-health-dot,
+.lg-health-item.error .lg-health-dot{background:var(--danger);box-shadow:0 0 8px color-mix(in srgb,var(--danger) 60%,transparent)}
+/* ── 2) Processing-chain strip + transport ───────────────────── */
+
+.lg-chain-control-strip{
+  display:flex;flex-direction:column;gap:10px;
+  padding:10px var(--gutter,14px);border-bottom:1px solid var(--line);
+}
+
+.lg-chain-panel{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:10px 12px}
+
+.lg-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+.lg-chain-node{
+  display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+  padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:var(--s3);
+  color:var(--muted);cursor:pointer;text-align:left;min-width:64px;
+}
+
+.lg-chain-node b{font:800 8px var(--mono);color:var(--dim)}
+
+.lg-chain-node span{font:800 9px var(--mono);color:var(--text);letter-spacing:.04em}
+
+.lg-chain-node em{font:600 8px var(--mono);color:var(--muted);font-style:normal}
+
+.lg-chain-node:hover{border-color:color-mix(in srgb,var(--p) 40%,var(--line))}
+
+.lg-chain-node.active{border-color:color-mix(in srgb,var(--p) 55%,var(--line));background:color-mix(in srgb,var(--p) 9%,var(--s3))}
+
+.lg-chain-node.active b{color:var(--p)}
+
+.lg-chain-node.output{border-color:color-mix(in srgb,var(--a) 45%,var(--line))}
+
+.lg-chain-node.output b{color:var(--a)}
+
+.lg-chain-arrow{color:var(--dim);font-size:14px;flex:0 0 auto}
+
+
+.lg-console-transport{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:8px 10px;border:1px solid var(--line);border-radius:var(--r1);background:var(--s3);
+}
+
+.lg-transport-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+.lg-transport-btn{
+  min-height:30px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;
+  background:var(--s2);color:var(--text);font:800 9px var(--mono);letter-spacing:.04em;cursor:pointer;
+}
+
+.lg-transport-btn:hover{border-color:color-mix(in srgb,var(--p) 40%,var(--line));transform:translateY(-1px)}
+
+.lg-transport-btn.accent{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--p) 24%,var(--s3)),var(--s3));
+  border-color:color-mix(in srgb,var(--p) 45%,var(--line));color:var(--text);
+}
+
+.lg-transport-status{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:9px;font-weight:700}
+
+.lg-transport-hint{color:var(--dim);font-size:8px;font-family:var(--mono);white-space:nowrap}
+/* ── 3) Tabs de workspace ────────────────────────────────────── */
+
+.lg-workspace-workspace{display:none}
+
+.lg-workspace-workspace.active{display:flex;flex-direction:column;gap:12px}
+
+.console-workspace{gap:12px}
+
+.lg-workspace-workspace-tab{
+  display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+  background:var(--s3);color:var(--muted);font:800 9px var(--mono);letter-spacing:.05em;cursor:pointer;
+}
+
+.lg-workspace-workspace-tab:hover{border-color:color-mix(in srgb,var(--p) 35%,var(--line))}
+
+.lg-workspace-workspace-tab.active{color:var(--text);border-color:color-mix(in srgb,var(--p) 50%,var(--line));background:color-mix(in srgb,var(--p) 8%,var(--s3))}
+
+.lg-workspace-tab-icon{font-size:11px;line-height:1}
+
+
+.lg-workspace-preset-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+
+.lg-workspace-preset-head h3{margin:0 0 2px;font-size:12px;font-weight:900}
+
+.lg-workspace-preset-head p{margin:0;color:var(--muted);font-size:9px}
+
+.lg-workspace-presets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+/* ── 4) Panel de espectro / análisis ─────────────────────────── */
+
+.lg-spectrum-row{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+
+.lg-spectrum-panel{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:12px}
+
+.lg-spectrum-stage{position:relative;min-height:160px;border-radius:var(--r1);background:var(--s);overflow:hidden}
+
+.lg-spectrum-stage canvas{width:100%;height:100%;display:block}
+
+.analysis-link-panel{border-color:color-mix(in srgb,var(--p) 25%,var(--line))}
+
+.lg-live{display:inline-flex;align-items:center;gap:5px;color:var(--ok);font:800 8px var(--mono);letter-spacing:.1em}
+
+.lg-live i{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px color-mix(in srgb,var(--ok) 65%,transparent);display:inline-block;animation:lg-live-pulse 1.4s ease-in-out infinite}
+@keyframes lg-live-pulse{0%,100%{opacity:1}
+50%{opacity:.35}
+}
+/* ── 5) Compresor multibanda ─────────────────────────────────── */
+
+.mb-wrap{display:grid;gap:10px}
+
+  .mb-crossover{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px
+}
+
+.mb-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+
+.mb-tab{
+  padding:7px 4px;border:1px solid var(--line);border-radius:7px;background:var(--s3);
+  color:var(--muted);font:700 9px var(--mono);text-align:center;cursor:pointer;
+}
+
+.mb-tab.active{color:var(--text);border-color:color-mix(in srgb,var(--p) 45%,var(--line));background:color-mix(in srgb,var(--p) 8%,var(--s3))}
+
+.mb-panel{display:none;gap:7px;grid-template-columns:1fr}
+
+.mb-panel.active{display:grid}
+
+
+.mb-gr-section{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:12px;display:grid;gap:4px}
+
+.mb-gr-title{font:800 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .mb-gr-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 6px 0 4px
+}
+
+.mb-gr-col{padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--s3)}
+
+.mb-gr-label{font:700 9px var(--mono);color:var(--muted);margin-bottom:6px}
+
+.mb-gr-bar-wrap{height:6px;border-radius:99px;background:var(--s4);overflow:hidden}
+
+.mb-gr-bar{height:100%;width:0;background:linear-gradient(90deg,var(--ok),var(--a),var(--danger));transition:width 80ms linear}
+
+.mb-gr-readout{margin-top:6px;font:700 9px var(--mono);color:var(--text)}
+
+  .mb-vu-section{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px
+}
+
+.mb-vu-item{padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--s3)}
+
+.mb-vu-label{font:800 8px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+
+.mb-vu-row{display:flex;justify-content:space-between;padding:2px 0}
+
+.mb-vu-key{color:var(--muted);font-size:9px}
+
+.mb-vu-val{color:var(--text);font:700 9px var(--mono)}
+
+
+.mb-sm{font-size:9px}
+
+.mb-xs{font-size:8px}
+/* ── 6) EQ de 4 bandas ────────────────────────────────────────── */
+
+  .eq4-wrap{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px
+}
+
+.eq4-band{border:1px solid var(--line);border-radius:9px;background:var(--s3);padding:8px;display:grid;gap:7px}
+
+.eq4-header{display:flex;align-items:center;margin-bottom:2px}
+
+.eq4-num{
+  padding:2px 6px;border-radius:6px;background:color-mix(in srgb,var(--p) 12%,transparent);
+  color:var(--p);font:800 8px var(--mono);
+}
+
+.eq-curve-wrap{border:1px solid var(--line);border-radius:var(--r1);background:var(--s);padding:6px;margin-bottom:8px}
+
+.eq-curve-wrap canvas{width:100%;display:block}
+/* ── 7) Medidor de bandas de frecuencia ──────────────────────── */
+
+.freqbands-grid{display:grid;gap:6px;padding-top:10px}
+
+.freqband-row{display:grid;grid-template-columns:70px minmax(0,1fr) 44px;align-items:center;gap:8px}
+
+.freqband-label{font-size:9px;color:var(--muted);font-weight:700}
+
+.freqband-track{height:6px;border-radius:99px;background:var(--s4);overflow:hidden}
+
+.freqband-fill{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--p2));transition:width 100ms linear}
+
+.freqband-val{font:700 9px var(--mono);color:var(--text);text-align:right}
+/* ── 8) Rack de medidores ────────────────────────────────────── */
+
+.meters-wrap{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:12px;margin-top:10px}
+
+.meters-toggle{cursor:pointer;color:var(--p);font:700 9px var(--mono);text-transform:lowercase;user-select:none}
+
+  .meters-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px
+}
+
+.meter-col{display:flex;flex-direction:column;gap:4px}
+
+.meter-name{font-size:9px;color:var(--muted);font-weight:700}
+
+.meter-readout{font:700 9px var(--mono);color:var(--text)}
+
+.stereo-meter-center{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line2,var(--line))}
+/* ── 9) Dashboard de sistema ─────────────────────────────────── */
+
+.dashboard-wrap{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s));padding:12px;margin-top:10px}
+
+.dashboard-wrap h3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:11px;font-weight:900}
+
+.dash-live-dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px color-mix(in srgb,var(--ok) 60%,transparent)}
+
+.dash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+
+.dash-label{font:800 8px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+
+.dash-value{font-size:14px;font-weight:900;color:var(--text)}
+
+.dash-value--eta{font-size:11px}
+
+.dash-bar-track{height:5px;border-radius:99px;background:var(--s4);overflow:hidden;margin-top:6px}
+
+.dash-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--ok),var(--warn),var(--danger));transition:width 200ms linear}
+
+.dash-metrics-row{display:flex;flex-wrap:wrap;gap:10px;padding:8px 0;color:var(--muted);font-size:9px}
+
+.dash-metrics-row b{color:var(--text);font-weight:800}
+
+.dash-queue-row{display:flex;justify-content:space-between;gap:8px;color:var(--dim);font-size:9px;margin-top:4px}
+/* ── 10) Extras de control-card / process-card ───────────────── */
+
+.control-card-badge{
+  align-self:flex-start;padding:4px 8px;border-radius:999px;border:1px solid var(--line);
+  background:var(--s2);color:var(--muted);font:800 8px var(--mono);letter-spacing:.08em;text-transform:uppercase;
+}
+
+.control-card-body{display:grid;gap:12px;padding-top:2px}
+
+.control-row-wide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+
+.process-card-accent{border-color:color-mix(in srgb,var(--p) 30%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--p) 6%,var(--s2)),var(--s))}
+
+.process-card-collapsible{cursor:default}
+
+
+.details-summary{
+  list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:9px 0;cursor:pointer;font-size:10px;font-weight:800;color:var(--text);
+}
+
+.details-summary::-webkit-details-marker{display:none}
+
+.details-summary--accent{color:var(--p)}
+
+.summary-divider{flex:1;height:1px;background:var(--line);margin:0 8px}
+/* ── 11) Params, toggles y labels ────────────────────────────── */
+
+.param--lg{grid-column:1/-1}
+
+.param--md{grid-column:span 1}
+
+.param-label{display:block;color:var(--muted);font-size:10px;font-weight:700;margin-bottom:6px}
+
+.param-hint{display:block;color:var(--dim);font-size:8px;margin-top:4px}
+
+.val-badge{
+  display:inline-block;padding:2px 7px;border-radius:6px;background:var(--s3);border:1px solid var(--line);
+  color:var(--text);font:700 9px var(--mono);
+}
+
+
+.toggle-label{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:10px;font-weight:700;cursor:pointer}
+
+.toggle-label--compact{padding:4px 0;font-size:9px}
+
+.toggle-label--tight{gap:6px;padding:2px 0}
+
+.toggle-label-right{
+  display:flex;align-items:center;gap:6px;margin-left:auto;color:var(--muted);
+  font-size:9px;font-weight:700;cursor:pointer;
+}
+
+
+.ms-control-label--bottom{align-items:flex-end}
+
+.ms-control-label--compact{padding:4px 0;font-size:9px}
+
+.ms-control-label--grid{grid-column:1/-1}
+
+.ms-control-label--makeup{color:var(--dim);font-size:9px}
+
+.ms-control-label--preview{color:var(--p)}
+
+.ms-control-label--spaced{margin-top:8px}
+
+
+.range-compact{width:70%}
+
+.range-value{font:700 9px var(--mono);color:var(--text);margin-left:8px}
+/* ── 12) Sidebar panes ────────────────────────────────────────── */
+
+.sidebar-pane-archivo,
+.sidebar-pane-cadena,
+.sidebar-pane-salida{display:none}
+
+#sidebarPaneContainer.sidebar-showing-archivo .sidebar-pane-archivo,
+#sidebarPaneContainer.sidebar-showing-cadena .sidebar-pane-cadena,
+#sidebarPaneContainer.sidebar-showing-salida .sidebar-pane-salida,
+#sidebarPaneContainer.sidebar-showing-mixer .sidebar-pane-mixer{display:block}
+
+.sidebarResizeHandle{cursor:ew-resize}
+/* ── 13) Botones sueltos ─────────────────────────────────────── */
+
+.btn-block{width:100%;display:flex;align-items:center;justify-content:center}
+
+.btn-ab{border-color:color-mix(in srgb,var(--p2) 40%,var(--line));color:var(--p2)}
+
+.btn-download{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--ok) 20%,var(--s3)),var(--s3));
+  border-color:color-mix(in srgb,var(--ok) 40%,var(--line));color:var(--text);
+}
+
+.btn-report{border-color:color-mix(in srgb,var(--muted) 30%,var(--line))}
+/* ── 14) Utilitarias sueltas ──────────────────────────────────── */
+
+.mt-lg{margin-top:16px}
+
+.mt-xs{margin-top:5px}
+
+.mt-xxs{margin-top:3px}
+
+
+.accent{color:var(--p)}
+
+.accent2{accent-color:var(--p2)}
+
+.output{/* modificador de .lg-chain-node, ver sección 2 */}
+
+
+.divider-top-lg{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+
+.section-divider{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+
+.section-divider--highlight{border-top:1px solid color-mix(in srgb,var(--p) 30%,var(--line));padding-top:12px;margin-top:12px}
+
+.section-title-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+
+.section-title-row--compact{margin-bottom:4px}
+
+.section-subtitle{font:800 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+
+.stage-num{
+  display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;
+  border-radius:5px;background:var(--s3);border:1px solid var(--line);color:var(--dim);
+  font:800 8px var(--mono);margin-right:6px;
+}
+
+.stage-num--highlight{background:color-mix(in srgb,var(--p) 15%,var(--s3));border-color:color-mix(in srgb,var(--p) 40%,var(--line));color:var(--p)}
+
+
+.note-mini{color:var(--dim);font-size:8px}
+
+.note-small{color:var(--muted);font-size:9px}
+
+.text-muted-body{color:var(--muted);font-size:10px;line-height:1.5}
+
+
+.hidden-input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+.select-full{width:100%}
+
+.canvas-block{display:block;width:100%}
+
+.stack-col{display:flex;flex-direction:column;gap:8px}
+
+.grid-2cols-tight{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+
+.grid-full{grid-column:1/-1}
+
+.inline-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+
+.loading-placeholder{padding:14px;text-align:center;color:var(--dim);font-size:10px}
+
+.uppy-picker{border:1px dashed color-mix(in srgb,var(--p) 30%,var(--line));border-radius:var(--r1);padding:10px;text-align:center}
+
+.file-name{font-size:10px;color:var(--text);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.file-size-warn{color:var(--warn);font-size:9px;margin-top:2px}
+
+
+.lg-inline-note{color:var(--dim);font-size:8px;font-weight:500;margin-left:4px}
+
+.ref-library-list{display:grid;gap:6px;max-height:180px;overflow:auto}
+
+.ref-match-option{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:9px;font-weight:700;cursor:pointer}
+
+.aside-scroll-hint{position:sticky;bottom:0;height:18px;background:linear-gradient(180deg,transparent,var(--s));pointer-events:none}
+
+.compact{padding:6px 0}
+
+.preview-audio{width:100%}
+
+.preview-audio audio{width:100%;display:block;margin-top:6px}
+/* ============================================================
+   Responsive — colapso de grillas fijas en pantallas angostas.
+   Breakpoints alineados con responsive.css (959px / 599px).
+   ============================================================ */
+@media (max-width: 959px) {
+  .lg-health-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 599px) {
+  .lg-health-grid{grid-template-columns:1fr}
+}

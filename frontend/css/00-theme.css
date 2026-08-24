@@ -1,0 +1,79 @@
+/* LGMDM V4 — theme/reset/tokens */
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { margin: 0; min-width: 0; min-height: 100%; color-scheme: dark; }
+  body { margin: 0; min-width: 0; min-height: 100dvh; overflow: hidden; }
+  button, input, select, textarea { font: inherit; }
+  button { color: inherit; }
+  img, canvas, svg { display: block; max-width: 100%; }
+  button, summary { -webkit-tap-highlight-color: transparent; }
+}
+@layer tokens {
+  :root {
+    --v4-bg: #06080d;
+    --v4-bg-2: #0a0d13;
+    --v4-panel: #0e131a;
+    --v4-panel-2: #111821;
+    --v4-panel-3: #151e28;
+    --v4-surface: #18222d;
+    --v4-border: rgba(255,255,255,.12);
+    --v4-border-strong: rgba(255,255,255,.22);
+    --v4-accent: #ef9b42;
+    --v4-accent-soft: rgba(239,155,66,.16);
+    --v4-cyan: #6fb2d8;
+    --v4-green: #6bd7a2;
+    --v4-red: #ee6d6d;
+    --v4-text: #f3f5f7;
+    --v4-text-2: #c6ced7;
+    --v4-muted: #8d98a5;
+    --v4-dim: #5f6a76;
+    --v4-shadow: 0 14px 30px rgba(0,0,0,.28);
+    --v4-radius: 7px;
+    --v4-radius-sm: 5px;
+    --v4-gap: clamp(7px, .7vw, 10px);
+    --v4-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --v4-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    --lg-shell-header-h: clamp(48px, 5.2vh, 62px);
+    --lg-sidebar-w: clamp(290px, 22vw, 360px);
+    --lg-content-pad-x: clamp(8px, .8vw, 14px);
+    --lg-content-pad-y: clamp(7px, .8vh, 12px);
+  }
+
+  html[data-theme="neon-studio"], html.theme-neon-studio {
+    --v4-accent: #ef9b42;
+    --v4-cyan: #69c2e8;
+  }
+
+  html[data-theme="carbon-forge"], html.theme-carbon-forge {
+    --v4-accent: #d69b58;
+    --v4-cyan: #7ea8bd;
+  }
+
+  html[data-theme="aurora-wave"], html.theme-aurora-wave {
+    --v4-accent: #e79b68;
+    --v4-cyan: #65d6c8;
+  }
+
+  html[data-theme="obsidian-gold"], html.theme-obsidian-gold {
+    --v4-accent: #d3ab62;
+    --v4-cyan: #a5bbc9;
+  }
+
+  html[data-theme="violet-circuit"], html.theme-violet-circuit {
+    --v4-accent: #c28ff0;
+    --v4-cyan: #7ed9ef;
+  }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  .hidden, .lgjs-hidden, .hidden-panel { display: none !important; }
+}

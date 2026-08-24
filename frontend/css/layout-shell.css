@@ -1,0 +1,96 @@
+/* LGMDM Layout Shell — ajustes sobre el shell real:
+   .lg-app > .lg-header + .lg-app-body > .lg-sidebar | #sidebarResizeHandle | .lg-main-stack
+   (definido en lgmdm.css; resize real en js/32-flex-layout.js).
+
+   FIX20: se eliminó por completo el sistema paralelo .app-container /
+   .main-container / .sidebar / .content-area / .content-shell / .app-footer —
+   eran de un intento de shell anterior que nunca se conectó al HTML (esas
+   clases no existen en index.html), y tabs-reorganized.css tenía un segundo
+   intento igual de muerto ("V3 FIX06"). Ninguno de los dos aplicaba nunca:
+   quedaban ahí como ruido y confundían cualquier edición futura del layout. */
+
+:root {
+  --lg-sidebar-w: clamp(250px, 22vw, 520px);
+  --lg-content-pad-x: clamp(8px, 1.2vw, 20px);
+  --lg-content-pad-y: clamp(8px, 1.2vh, 18px);
+}
+
+html, body {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  overflow: hidden; /* shell de altura fija: cada panel (.lg-sidebar / .lg-main-stack) scrollea por su cuenta */
+}
+
+#lgmdmWorkspaceShell,
+.lg-workspace-workspace-shell {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+#lgMasterConsole,
+.lg-console {
+  width: 100%;
+  max-width: 1480px;
+  min-width: 0;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+/* Botón de colapsar sidebar: sacado del flujo y anclado al borde real del
+   sidebar vía --lg-sidebar-w, que js/32-flex-layout.js mantiene sincronizada
+   mientras se arrastra el handle. */
+#sidebarCollapseBtn,
+.sidebar-toggle-btn {
+  position: fixed;
+  left: calc(var(--lg-sidebar-w) - 13px);
+  top: clamp(58px, 8vh, 88px);
+  z-index: 500;
+}
+
+/* FIX20: antes esta regla apuntaba a .main-container.sidebar-collapsed (clase
+   inexistente) y por eso nunca se disparaba. js/32-flex-layout.js togglea
+   "sidebar-collapsed" sobre #appBody (.lg-app-body), no sobre .main-container —
+   ahora el selector coincide con lo que el JS realmente hace. */
+.lg-app-body.sidebar-collapsed #sidebarCollapseBtn,
+.lg-app-body.sidebar-collapsed .sidebar-toggle-btn {
+  left: 8px;
+}
+
+body.lgmdm-layout-dragging,
+body.lgmdm-layout-dragging * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* < 960px: 32-flex-layout.js deshabilita el drag y el sidebar pasa a apilarse
+   arriba del contenido (ver lgmdm.css @media max-width:900px) — el botón de
+   colapsar, anclado por --lg-sidebar-w, ya no tiene sentido en ese layout. */
+@media (max-width: 959px) {
+  #sidebarCollapseBtn,
+  .sidebar-toggle-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  #lgmdmWorkspaceShell,
+  .lg-workspace-workspace-shell,
+  #lgMasterConsole,
+  .lg-console {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+img, video, canvas, iframe {
+  max-width: 100%;
+}
