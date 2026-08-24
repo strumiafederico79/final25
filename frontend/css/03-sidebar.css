@@ -1,0 +1,19 @@
+.lg-sidebar{min-height:0;overflow:auto;padding:14px;border-right:1px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--s) 96%,transparent),color-mix(in srgb,var(--bg) 96%,transparent))}
+.lg-sidebar-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:4px 3px 12px}
+.lg-sidebar-head strong{font-size:12px}
+.eyebrow,.health-label{font:800 8px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--p)}
+.lg-collapse-btn{width:29px;height:29px;border:1px solid var(--line);background:var(--s2);border-radius:8px;cursor:pointer}
+.lg-resize-handle{width:10px;cursor:col-resize;background:linear-gradient(90deg,transparent 35%,var(--line) 50%,transparent 65%)}
+.sidebar-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:4px 0 12px}
+.sidebar-tab{min-width:0;padding:9px 7px;border:1px solid var(--line);border-radius:9px;background:var(--s2);color:var(--muted);font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-tab.active{color:var(--text);background:linear-gradient(180deg,color-mix(in srgb,var(--p) 14%,var(--s2)),var(--s3));border-color:color-mix(in srgb,var(--p) 42%,var(--line));box-shadow:inset 0 1px 0 rgba(255,255,255,.02)}
+.control-stack{display:grid;gap:10px}
+.process-card,.panel-block,.mb-none{border:1px solid var(--line);border-radius:var(--r2);background:linear-gradient(180deg,var(--s2),var(--s))}
+.process-card{overflow:hidden}
+.process-card-header{list-style:none;display:flex;gap:9px;align-items:center;padding:11px 12px;cursor:pointer}
+.process-card-header::-webkit-details-marker{display:none}
+.process-card-step{padding:4px 7px;border-radius:6px;background:color-mix(in srgb,var(--p) 11%,transparent);color:var(--p);font:800 8px var(--mono)}
+.process-card-copy{font-size:11px;font-weight:800}
+.process-card-body{padding:0 12px 12px;display:grid;gap:12px}
+.section-label{margin-bottom:6px;font:800 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.section-header-row{display:flex;align-items:center;justify-content:space-between;gap:8px}

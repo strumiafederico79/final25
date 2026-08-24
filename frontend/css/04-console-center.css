@@ -1,0 +1,19 @@
+#lgMasterConsole.lg-console{min-width:0;display:grid;gap:11px}
+#lgMasterConsole>*{min-width:0}
+#lgMasterConsole .console-master-bus,#lgMasterConsole .master-bus{padding:12px 14px;border:1px solid color-mix(in srgb,var(--p2) 28%,var(--line));border-radius:14px;background:linear-gradient(90deg,color-mix(in srgb,var(--s2) 94%,transparent),color-mix(in srgb,var(--bg) 94%,transparent))}
+#lgMasterConsole .console-title-row,#lgMasterConsole .console-toolbar-row,#lgMasterConsole .master-bus-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#consoleTrackTitle{font-size:14px;font-weight:900}
+#consoleTrackMeta,#consoleStatus{color:var(--muted);font-size:10px}
+#consoleAnalyzeBtn,#consoleMasterBtn,#consoleAnalyzeSmall,#consoleMasterSmall{min-height:32px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--s3);font-size:9px;font-weight:900}
+.lg-console .studio-grid,.lg-console .processing-grid,.lg-console .module-grid,.lg-console .console-grid{display:grid;grid-template-columns:minmax(235px,.85fr) minmax(0,2fr) minmax(180px,.65fr);gap:12px}
+.lg-console .studio-card,.lg-console .chain-card,.lg-console .plugins-card,.lg-console .processing-card,.lg-console .module-card,.lg-console .rack-card,.lg-console .preview-card,.lg-console .meter-card{padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.lg-console .card-head,.lg-console .studio-card>header,.lg-console .chain-card>header,.lg-console .plugins-card>header{min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px}
+.lg-console .card-body,.lg-console .studio-card>.body{padding:10px}
+.module-item,.rack-module,.plugin-item,.chain-module,.processing-module,.studio-module{border:1px solid var(--line);border-radius:9px;background:var(--s3)}
+.module-item+.module-item,.rack-module+.rack-module,.plugin-item+.plugin-item{margin-top:6px}
+.module-item,.plugin-item,.chain-module{padding:8px 9px}
+.module-item.active,.plugin-item.active,.chain-module.active{border-color:color-mix(in srgb,var(--p) 44%,var(--line));background:color-mix(in srgb,var(--p) 7%,var(--s3))}
+.meter-grid,.metrics-grid,.console-meters,.loudness-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.metric-card,.meter-card,.loudness-card{padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.metric-label{font:800 8px var(--mono);color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.metric-value{margin-top:5px;font:800 15px var(--mono)}
