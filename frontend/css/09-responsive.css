@@ -1,0 +1,5 @@
+@media(max-width:1180px){:root{--sidebar:300px}.lg-studio-head{align-items:flex-start;flex-direction:column}.lg-console .studio-grid,.lg-console .processing-grid,.lg-console .module-grid,.lg-console .console-grid{grid-template-columns:1fr}.lg-health-strip{grid-template-columns:1fr}}
+@media(max-width:900px){:root{--sidebar:270px}.lg-header{grid-template-columns:1fr auto}.lg-header-center{display:none}.lg-app-body{grid-template-columns:1fr}.lg-sidebar{max-height:46vh;border-right:0}}
+@media(max-width:680px){.lg-header{min-height:62px;padding:10px}.lg-brand-mark{width:32px;height:32px}.lg-brand{font-size:12px}.lg-subbrand{font-size:7px}.lg-icon-btn{width:32px;height:32px}}
+@media(max-width:440px){.lg-health-strip{grid-template-columns:1fr}.button-row>*{flex:1 1 100%}.lg-workspace-workspace-tabs{grid-template-columns:1fr}.lg-main-stack{padding:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}

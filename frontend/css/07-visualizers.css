@@ -1,0 +1,5 @@
+#lgmdmWaveformCanvas,#waveformCanvas,canvas{max-width:100%}
+.waveform-wrap,.analyzer-wrap,#waveformWrap,.spectrum-wrap{min-height:170px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#080b14;overflow:hidden}
+.waveform-wrap canvas,.analyzer-wrap canvas,#lgmdmWaveformCanvas,#waveformCanvas{width:100%;height:100%;min-height:150px;display:block}
+.meter-bar,.level-bar,.progress-bar{position:relative;height:8px;overflow:hidden;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.meter-bar>*,.level-bar>*,.progress-bar>*{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--p),var(--p2),var(--a))}
