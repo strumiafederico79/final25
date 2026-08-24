@@ -1,19 +1,79 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Final25 — CSS modularization demo</title>
-  <link rel="stylesheet" href="frontend/css/index.css">
-</head>
-<body>
-  <div class="lg-app">
-    <header class="lg-header">Header demo</header>
-    <main class="lg-app-body">
-      <aside class="lg-sidebar">Sidebar demo</aside>
-      <section id="lgMasterConsole" class="lg-console">Console demo</section>
-    </main>
-    <footer class="lg-footer">Footer demo</footer>
-  </div>
-</body>
-</html>
+<!DOCTYPE html>
+<html data-build="REBUILD02" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#070812" name="theme-color"/>
+<meta content="MASTER — Intelligent Mastering Console" name="description"/>
+<title>MASTER — Intelligent Mastering Console</title>
+<link href="css/lgmdm.css" rel="stylesheet"/>
+<!-- BUGFIX #4: solo lgmdm.css estaba linkeado. Cruzando las clases que usa
+     este HTML contra lo que define lgmdm.css, 214 clases quedan sin
+     estilo (paneles de dashboard, EQ4, tarjetas de control, AB compare,
+     etc.) — de esas, 41 SÍ están definidas en estos 5 archivos, que
+     existen en el proyecto pero nunca se linkearon. Las 173 restantes no
+     están en NINGÚN css del proyecto — eso no es un link roto, es CSS que
+     todavía no se escribió para esta parte de la interfaz; no lo inventé
+     a ciegas, avisar aparte. -->
+<link href="css/layout-shell.css" rel="stylesheet"/>
+<link href="css/studio.css" rel="stylesheet"/>
+<link href="css/studio-console-complete.css" rel="stylesheet"/>
+<link href="css/studio-shell-complete.css" rel="stylesheet"/>
+<link href="css/tabs-reorganized.css" rel="stylesheet"/>
+<link href="css/themes-professional.css" rel="stylesheet"/>
+<link href="css/responsive.css" rel="stylesheet"/>
+<link href="css/console-shell.css" rel="stylesheet"/>
+<!-- Studio theme (disabled by default; activated by theme manager) -->
+<link href="css/studio-theme.css" rel="stylesheet" id="studio-css" disabled />
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+</head><body><div aria-live="polite" class="sr-only" id="a11y-announcements" role="status"></div><div id="auth-overlay"></div><div class="lg-app" id="app-container"><header class="lg-header" id="appHeader">
+<div class="lg-brand-lockup">
+<div aria-hidden="true" class="lg-brand-mark">M</div>
+<div>
+<div class="lg-brand">MASTER</div>
+<div class="lg-subbrand">INTELLIGENT MASTERING CONSOLE</div>
+</div>
+</div>
+<div class="lg-header-center">
+<div class="lg-session-chip"><span aria-hidden="true" class="status-dot"></span><span id="statusBar">Listo</span></div>
+<div class="lg-work-state">Professional Audio Workflow</div>
+</div>
+<div class="lg-header-actions">
+<button aria-label="Cambiar tema" class="lg-icon-btn" id="theme-switcher-btn" title="Cambiar tema" type="button">◐</button>
+<button class="lg-icon-btn" id="helpBtn" title="Ayuda" type="button">?</button>
+<button aria-label="Cerrar sesión" class="lg-icon-btn" id="logoutBtn" title="Cerrar sesión" type="button">↪</button>
+</div>
+</header><div class="lg-app-body" id="appBody"><aside aria-label="Flujo de trabajo" class="lg-sidebar" id="workflowSidebar"><div class="lg-sidebar-head"><div><div class="eyebrow">WORKFLOW</div><strong>Mastering Workspace</strong></div><button aria-label="Contraer panel" class="lg-collapse-btn" id="sidebarCollapseBtn" type="button">‹</button></div><div class="sidebar-tabs" id="sidebarTabs">
+<button class="sidebar-tab active" data-pane="pane-archivo" type="button">📁 Archivo</button>
+<button class="sidebar-tab" data-pane="pane-cadena" type="button">⛓ Cadena</button>
+<button class="sidebar-tab" data-pane="pane-salida" type="button">🎚 Salida</button>
+<button class="sidebar-tab" data-pane="pane-proyectos" type="button">📦 Proyectos</button>
+</div><div class="control-grid sidebar-showing-archivo" id="sidebarPaneContainer">
+<div class="control-stack">
+<!-- ══════ PASO 1 — Archivo ══════ -->
+<details class="process-card process-card-collapsible sidebar-pane-archivo" id="pasoArchivo" open="">
+<summary class="process-card-header">
+<span class="process-card-step">Paso 1</span>
+<span class="process-card-copy">Carga y contexto</span>
+</summary>
+<div class="process-card-body">
+<div>
+<div class="section-label">Archivo de audio</div>
+<div class="drop-zone" id="dropZone">
+<input accept=".wav,.mp3,.flac,.ogg,.aiff,.aif" aria-label="Archivo de audio principal" id="fileInput" type="file"/>
+<div class="icon">🎵</div>
+<p>
+                      Arrastrá tu audio aquí
+                      <br/>
+<link rel="stylesheet" href="frontend/css/index.css">
+  <link rel="stylesheet" href="frontend/css/studio-theme.css" id="studio-css" disabled>
+</p>
+<div class="uppy-picker" id="uppyPicker"></div>
+<div class="file-name" id="fileName"></div>
+<div class="file-size-warn" id="fileSizeWarn"></div>
+</div>
+<div class="button-row">
+<button class="btn btn-primary" id="btnAnalyze" type="button">Analizar</button>
+<button class="btn btn-secondary" id="btnAdvice" type="button">Recomendaciones</button>
+</div>
+<div class="button-row">
+button: file too long
